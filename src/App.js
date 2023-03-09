@@ -1,7 +1,8 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Tasks from './components/Tasks';
 import Employees from './components/Employees';
+import NewTask from './components/NewTask';
 
 function App() {
 
@@ -36,6 +37,8 @@ const [employees, setEmployee] = useState([
   },
 
 ])
+
+
 const [tasks, setTasks] = useState([
   {
    id: 1,
@@ -65,13 +68,33 @@ const [tasks, setTasks] = useState([
   
 ])
 
+localStorage.setItem('tasks', JSON.stringify(tasks))
+useEffect(() => {
+  const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+
+  if (storedTasks) {
+    setTasks(storedTasks);
+  } else {
+  
+    console.log("No tasks found in local storage.");
+  }
+}, []);
+
+const addTask = (newTask) => {
+
+  const createTasks = [...tasks, newTask];
+  setTasks(createTasks)
+
+  localStorage.setItem('tasks', JSON.stringify(createTasks))
+
+}
 
   return (
     <div className="App">
       <h1 className='text-center'>Employee task app</h1>
       
      <div className='wrapper'>
-
+      <NewTask onAddTask = {addTask}/>
       <Tasks tasks={tasks}/>
       <Employees employees={employees}/>
      </div>

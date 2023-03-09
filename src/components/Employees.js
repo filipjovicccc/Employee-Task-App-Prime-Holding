@@ -6,6 +6,7 @@ function Employees({employees}) {
   return (
     <div className="container">
     <h1>Employee Tracker</h1>
+      <button className='btn'>Add</button>
       <div>
 
        {employees.map((employee) => (
@@ -14,7 +15,6 @@ function Employees({employees}) {
 
 
       </div>
-      <button className='btn'>Add</button>
     </div>
   )
 }
