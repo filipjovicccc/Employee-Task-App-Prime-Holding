@@ -2,71 +2,15 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import Tasks from './components/Tasks';
 import Employees from './components/Employees';
-import NewTask from './components/NewTask';
+import { employeeData } from './components/data';
+import { tasksData } from './components/data';
 
 function App() {
 
-const [employees, setEmployee] = useState([
-  {
-   id: 1,
-   name: "John",
-   email: "john@gmail.com",
-   phoneNumber: 61092380092,
-   birthDate: 1101990, 
-   salary: 1200
-
-  },
-
-  {
-    id: 2,
-    name: "Mark",
-    email: "mark@gmail.com",
-    phoneNumber: 67512234134,
-    birthDate: 11011989,
-    salary: 2000
-
-  },
-  {
-    id: 3,
-    name: "Maria",
-    email: "maria@gmail.com",
-    phoneNumber: 689102830912,
-    birthDate: 1101995,
-    salary: 3000
-
-  },
-
-])
+const [employees, setEmployee] = useState(employeeData)
 
 
-const [tasks, setTasks] = useState([
-  {
-   id: 1,
-   title: "Papers",
-   description: "Handelging documentation",
-   assignee: "Maria",
-   dueDate:  11062023
-
-  },
-
-  {
-    id: 2,
-   title: "Maintenance",
-   description: "In proces",
-   assignee: "John",
-   dueDate:  11022023
-
-  },
-  {
-    id: 3,
-    title: "Work evaluation",
-    description: "Assesment of employes",
-    assignee: "John",
-    dueDate:  2072023
-
-  },
-  
-])
+const [tasks, setTasks] = useState(tasksData)
 
 localStorage.setItem('tasks', JSON.stringify(tasks))
 useEffect(() => {
@@ -89,14 +33,91 @@ const addTask = (newTask) => {
 
 }
 
+const deleteTask =(id) =>{
+  
+  const updateTasks = tasks.filter(task => task.id !== id);
+
+  setTasks(updateTasks)
+
+  localStorage.setItem('tasks', JSON.stringify(updateTasks))
+
+}
+
+const updateTask = (id, updatedTask) => {
+  const updatingTasks = tasks.map(task => {
+    if (task.id === id) {
+      return { ...task, ...updatedTask };
+    }
+    return task;
+  });
+
+  setTasks(updatingTasks);
+  localStorage.setItem('tasks', JSON.stringify(updatingTasks));
+};
+
+
+
+localStorage.setItem('tasks', JSON.stringify(tasks))
+useEffect(() => {
+  const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+
+  if (storedTasks) {
+    setTasks(storedTasks);
+  } else {
+  
+    console.log("No tasks found in local storage.");
+  }
+}, []);
+
+const addEmployee = (newEmployee) => {
+
+  const createEmployee = [...employees, newEmployee];
+  setEmployee(createEmployee)
+
+  localStorage.setItem('employees', JSON.stringify(createEmployee))
+
+}
+
+const deleteEmployee =(id) =>{
+  
+  const updateEmployees = employees.filter(task => task.id !== id);
+
+  setEmployee(updateEmployees)
+
+  localStorage.setItem('employees', JSON.stringify(updateEmployees))
+
+}
+
+const updateEmployee= (id, updatedEmploye) => {
+  const updatingEmployee = employees.map(employee => {
+    if (employee.id === id) {
+      return { ...employee, ...updatedEmploye };
+    }
+    return employee;
+  });
+
+  setEmployee(updatingEmployee);
+  localStorage.setItem('tasks', JSON.stringify(updatingEmployee));
+
+}
+
+
   return (
+
     <div className="App">
       <h1 className='text-center'>Employee task app</h1>
       
      <div className='wrapper'>
-      <NewTask onAddTask = {addTask}/>
-      <Tasks tasks={tasks}/>
-      <Employees employees={employees}/>
+    
+      <Tasks tasks={tasks} onAddTask={addTask} deleteTask={deleteTask} updateTask={updateTask}/>
+      <Employees
+       employees={employees}
+       onAddEmployee={addEmployee} 
+       deleteEmployee={deleteEmployee}
+       updateEmployee={updateEmployee}
+
+       />
+
      </div>
 
     </div>
