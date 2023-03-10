@@ -19,7 +19,7 @@ function NewTask({onAddTask}) {
       title,
       description,
       assignee,
-      dueDate
+      dueDate: new Date(Date.parse(dueDate))
     };
 
     onAddTask(newTask);

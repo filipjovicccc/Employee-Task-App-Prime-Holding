@@ -76,3 +76,13 @@ body{
   font-size: 17px;
 }
 
+.small-btn {
+  background-color: red;
+  color: #fff;
+  padding: 9px 12px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  
+}

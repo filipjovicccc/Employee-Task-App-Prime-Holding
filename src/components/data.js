@@ -5,7 +5,7 @@ export const employeeData =
          name: "John",
          email: "john@gmail.com",
          phoneNumber: 61092380092,
-         birthDate: 1101990, 
+         birthDate: "01/11/1990", 
          salary: 1200
       
         },
@@ -15,7 +15,7 @@ export const employeeData =
           name: "Mark",
           email: "mark@gmail.com",
           phoneNumber: 67512234134,
-          birthDate: 11011989,
+          birthDate: "05/20/1995",
           salary: 2000
       
         },
@@ -24,7 +24,7 @@ export const employeeData =
           name: "Maria",
           email: "maria@gmail.com",
           phoneNumber: 689102830912,
-          birthDate: 1101995,
+          birthDate: "06/12/1989",
           salary: 3000
       
         },
@@ -33,23 +33,22 @@ export const employeeData =
 
   export const tasksData = 
 
-     [
+       [
         {
-
          id: 1,
-         title: "Papers",
-         description: "Handelging documentation",
-         assignee: "Maria",
-         dueDate:  11062023
-  
-       },
+         title: "booking",
+         description: "Reading files",
+         assignee: "Marie",
+         dueDate: "5/3/2023"
+      
+        },
   
        {
           id: 2,
           title: "Maintenance",
           description: "In proces",
           assignee: "John",
-          dueDate:  11022023
+          dueDate:  "1/2/2023"
   
        },
        {
@@ -57,7 +56,7 @@ export const employeeData =
           title: "Work evaluation",
           description: "Assesment of employes",
           assignee: "John",
-          dueDate:  2072023
+          dueDate:  "1/1/2023"
   
     },
     

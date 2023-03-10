@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 
 function Task(props) {
+
   const [editingEmployee, setEditingEmployee] = useState(false);
   const [name, setName] = useState(props.employee.name);
   const [email, setEmail] = useState(props.employee.email);
@@ -17,7 +18,7 @@ function Task(props) {
       name,
       email,
       phoneNumber,
-      birthDate,
+      birthDate:new Date(Date.parse(birthDate)),
       salary,
     };
     props.updateEmployee(updatedEmployee);
@@ -34,7 +35,7 @@ function Task(props) {
           <input type="text" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
           <input type="text" value={salary} onChange={(e) => setSalary(e.target.value)} />
          
-          <button onClick={handleUpdate}>Save</button>
+          <button style={{backgroundColor: "black"}} className='small-btn' onClick={handleUpdate}>Save</button>
         </>
       ) : (
         <>
@@ -43,7 +44,7 @@ function Task(props) {
           <h3>{phoneNumber}</h3>
           <h3>{birthDate}</h3>
           <h3>{salary}</h3>
-          <button onClick={() => setEditingEmployee(true)}>Update</button>
+          <button className='small-btn' onClick={() => setEditingEmployee(true)}>Update</button>
         </>
       )}
     </div>

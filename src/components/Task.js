@@ -30,7 +30,7 @@ function Task(props) {
           <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
           <input type="text" value={assignee} onChange={(e) => setAssignee(e.target.value)} />
           <input type="text" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
-          <button onClick={handleUpdate}>Save</button>
+          <button style={{backgroundColor: "black"}} className='small-btn' onClick={handleUpdate}>Save</button>
         </>
       ) : (
         <>
@@ -38,7 +38,7 @@ function Task(props) {
           <h3>{description}</h3>
           <h3>{assignee}</h3>
           <h3>{dueDate}</h3>
-          <button onClick={() => setEditing(true)}>Update</button>
+          <button className='small-btn' onClick={() => setEditing(true)}>Update</button>
         </>
       )}
     </div>

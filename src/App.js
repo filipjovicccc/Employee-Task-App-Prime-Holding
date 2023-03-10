@@ -101,8 +101,24 @@ const updateEmployee= (id, updatedEmploye) => {
 
 }
 
+const getTopEmployees = () => {
+  const pastMonth = new Date();
+  pastMonth.setMonth(pastMonth.getMonth() - 1);
 
-  return (
+  const employeeTaskCounts = employees.map(employee => {
+    const tasksCompleted = tasks.filter(task => task.assignee === employee.name).length;
+    return { employeeName: employee.name, tasksCompleted}
+  });
+
+  employeeTaskCounts.sort((a,b) => b.tasksCompleted - a.tasksCompleted);
+
+  return employeeTaskCounts.slice(0, 5)
+
+}
+const topEmployees = getTopEmployees();
+topEmployees.forEach(employee => console.log(`${employee.employeeName}: ${employee.tasksCompleted} tasks completed`));
+  
+return (
 
     <div className="App">
       <h1 className='text-center'>Employee task app</h1>
