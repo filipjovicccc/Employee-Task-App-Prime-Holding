@@ -57,15 +57,15 @@ const updateTask = (id, updatedTask) => {
 
 
 
-localStorage.setItem('tasks', JSON.stringify(tasks))
+localStorage.setItem('employees', JSON.stringify(employees))
 useEffect(() => {
-  const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+  const storedEmployees = JSON.parse(localStorage.getItem('employees'));
 
-  if (storedTasks) {
-    setTasks(storedTasks);
+  if (storedEmployees) {
+    setTasks(storedEmployees);
   } else {
   
-    console.log("No tasks found in local storage.");
+    console.log("No employees found in local storage.");
   }
 }, []);
 
