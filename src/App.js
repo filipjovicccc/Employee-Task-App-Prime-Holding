@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import Tasks from './components/Tasks';
-import Employees from './components/Employees';
 import { employeeData } from './components/data';
 import { tasksData } from './components/data';
 import {
@@ -10,6 +8,11 @@ import {
   updateStorage,
   setStorage,
 } from './service/storageService';
+import InputSection from './components/InputSection';
+import Header from './components/UI/Header';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import TaskPage from './components/pages/TaskPage';
+import EmployeePage from './components/pages/EmployeePage';
 
 function App() {
   const [employees, setEmployee] = useState(employeeData);
@@ -91,7 +94,30 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="text-center">Employee task app</h1>
+    
+     <Router>
+   
+    <Header />
+    
+    
+     <Routes>
+      <Route path="/" element={
+      <TaskPage 
+          tasks={tasks}
+          onAddTask={addTask}
+          deleteTask={deleteTask}
+          updateTask={updateTask}/>}/>
+      
+      <Route path="/employee" element={<EmployeePage />}/>
+   
+     </Routes>
+
+
+     </Router>
+
+      {/* <InputSection />
+      <Header />
+      <Taskss />
 
       <div className="wrapper">
         <Tasks
@@ -106,7 +132,7 @@ function App() {
           deleteEmployee={deleteEmployee}
           updateEmployee={updateEmployee}
         />
-      </div>
+      </div> */}
     </div>
   );
 }

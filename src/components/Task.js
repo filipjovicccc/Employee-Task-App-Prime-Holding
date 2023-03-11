@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
+import Card from './UI/Card';
 
 function Task(props) {
   const [editing, setEditing] = useState(false);
@@ -22,7 +23,7 @@ function Task(props) {
   };
 
   return (
-    <div className="item large-item">
+    <Card>
       {editing ? (
         <>
           <label>Task title:</label>
@@ -70,7 +71,7 @@ function Task(props) {
           </div>
         </>
       )}
-    </div>
+    </Card>
   );
 }
 

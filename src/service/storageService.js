@@ -4,7 +4,7 @@ export const setStorage = (key, value) => {
 
 export const getStorage = (key) => JSON.parse(localStorage.getItem(key));
 
-//create storage
+
 export const addToStorage = (key, item) => {
   const storage = getStorage(key);
   const updateStorage = [...storage, item];
@@ -12,7 +12,6 @@ export const addToStorage = (key, item) => {
   return updateStorage;
 };
 
-//update storage
 export const updateStorage = (id, updatingItem, key) => {
   const storage = getStorage(key);
   const newItem = storage.map((item) => {
@@ -26,8 +25,7 @@ export const updateStorage = (id, updatingItem, key) => {
   return newItem;
 };
 
-//read storage
-//delete storage
+
 export const deleteStorage = (id, key) => {
   const storage = getStorage(key);
   const updateStorage = storage.filter((item) => item.id !== id);

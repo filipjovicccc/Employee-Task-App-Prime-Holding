@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import Modal from './UI/Modal';
 
 function NewTask({ onAddTask }) {
   const [title, setTitle] = useState('');
@@ -30,6 +31,7 @@ function NewTask({ onAddTask }) {
   };
 
   return (
+    <Modal>
     <form className="form" onSubmit={submitTask}>
       <div className="form-control">
         <label>Task title</label>
@@ -81,6 +83,12 @@ function NewTask({ onAddTask }) {
         Create task
       </button>
     </form>
+
+
+
+
+
+    </Modal>
   );
 }
 
