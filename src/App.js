@@ -1,141 +1,112 @@
-import './App.css';
 import { useState, useEffect } from 'react';
 import Tasks from './components/Tasks';
 import Employees from './components/Employees';
 import { employeeData } from './components/data';
 import { tasksData } from './components/data';
+import {
+  addToStorage,
+  deleteStorage,
+  getStorage,
+  updateStorage,
+  setStorage,
+} from './service/storageService';
 
 function App() {
+  const [employees, setEmployee] = useState(employeeData);
+  const [tasks, setTasks] = useState(tasksData);
 
-const [employees, setEmployee] = useState(employeeData)
+  setStorage('tasks', tasks);
+  useEffect(() => {
+    const storedTasks = getStorage('tasks');
 
-
-const [tasks, setTasks] = useState(tasksData)
-
-localStorage.setItem('tasks', JSON.stringify(tasks))
-useEffect(() => {
-  const storedTasks = JSON.parse(localStorage.getItem('tasks'));
-
-  if (storedTasks) {
-    setTasks(storedTasks);
-  } else {
-  
-    console.log("No tasks found in local storage.");
-  }
-}, []);
-
-const addTask = (newTask) => {
-
-  const createTasks = [...tasks, newTask];
-  setTasks(createTasks)
-
-  localStorage.setItem('tasks', JSON.stringify(createTasks))
-
-}
-
-const deleteTask =(id) =>{
-  
-  const updateTasks = tasks.filter(task => task.id !== id);
-
-  setTasks(updateTasks)
-
-  localStorage.setItem('tasks', JSON.stringify(updateTasks))
-
-}
-
-const updateTask = (id, updatedTask) => {
-  const updatingTasks = tasks.map(task => {
-    if (task.id === id) {
-      return { ...task, ...updatedTask };
+    if (storedTasks) {
+      setTasks(storedTasks);
+    } else {
+      console.log('No tasks found in local storage.');
     }
-    return task;
-  });
+  }, []);
 
-  setTasks(updatingTasks);
-  localStorage.setItem('tasks', JSON.stringify(updatingTasks));
-};
+  const addTask = (newTask) => {
+    const createTasks = addToStorage('tasks', newTask);
+    setTasks(createTasks);
+  };
 
+  const deleteTask = (id) => {
+    const updateTasks = deleteStorage(id, 'tasks');
+    setTasks(updateTasks);
+  };
 
+  const updateTask = (id, updatedTask) => {
+    const updatingTasks = updateStorage(id, updatedTask, 'tasks');
+    setTasks(updatingTasks);
+  };
 
-localStorage.setItem('employees', JSON.stringify(employees))
-useEffect(() => {
-  const storedEmployees = JSON.parse(localStorage.getItem('employees'));
+  setStorage('employees', employees);
+  useEffect(() => {
+    const storedEmployees = getStorage('employees');
 
-  if (storedEmployees) {
-    setTasks(storedEmployees);
-  } else {
-  
-    console.log("No employees found in local storage.");
-  }
-}, []);
-
-const addEmployee = (newEmployee) => {
-
-  const createEmployee = [...employees, newEmployee];
-  setEmployee(createEmployee)
-
-  localStorage.setItem('employees', JSON.stringify(createEmployee))
-
-}
-
-const deleteEmployee =(id) =>{
-  
-  const updateEmployees = employees.filter(task => task.id !== id);
-
-  setEmployee(updateEmployees)
-
-  localStorage.setItem('employees', JSON.stringify(updateEmployees))
-
-}
-
-const updateEmployee= (id, updatedEmploye) => {
-  const updatingEmployee = employees.map(employee => {
-    if (employee.id === id) {
-      return { ...employee, ...updatedEmploye };
+    if (storedEmployees) {
+      setEmployee(storedEmployees);
+    } else {
+      console.log('No employees found in local storage.');
     }
-    return employee;
-  });
+  }, []);
 
-  setEmployee(updatingEmployee);
-  localStorage.setItem('tasks', JSON.stringify(updatingEmployee));
+  const addEmployee = (newEmployee) => {
+    const createEmployee = addToStorage('employees', newEmployee);
+    setEmployee(createEmployee);
+  };
 
-}
+  const deleteEmployee = (id) => {
+    const updateEmployees = deleteStorage(id, 'employees');
+    setEmployee(updateEmployees);
+  };
 
-const getTopEmployees = () => {
-  const pastMonth = new Date();
-  pastMonth.setMonth(pastMonth.getMonth() - 1);
+  const updateEmployee = (id, updatedEmployee) => {
+    const updatingEmployee = updateStorage(id, updatedEmployee, 'employees');
+    setEmployee(updatingEmployee);
+  };
 
-  const employeeTaskCounts = employees.map(employee => {
-    const tasksCompleted = tasks.filter(task => task.assignee === employee.name).length;
-    return { employeeName: employee.name, tasksCompleted}
-  });
+  const getTopEmployees = () => {
+    const pastMonth = new Date();
+    pastMonth.setMonth(pastMonth.getMonth() - 1);
 
-  employeeTaskCounts.sort((a,b) => b.tasksCompleted - a.tasksCompleted);
+    const employeeTaskCounts = employees.map((employee) => {
+      const tasksCompleted = tasks.filter(
+        (task) => task.assignee === employee.name
+      ).length;
+      return { employeeName: employee.name, tasksCompleted };
+    });
 
-  return employeeTaskCounts.slice(0, 5)
+    employeeTaskCounts.sort((a, b) => b.tasksCompleted - a.tasksCompleted);
 
-}
-const topEmployees = getTopEmployees();
-topEmployees.forEach(employee => console.log(`${employee.employeeName}: ${employee.tasksCompleted} tasks completed`));
-  
-return (
+    return employeeTaskCounts.slice(0, 5);
+  };
+  const topEmployees = getTopEmployees();
+  topEmployees.forEach((employee) =>
+    console.log(
+      `${employee.employeeName}: ${employee.tasksCompleted} tasks completed`
+    )
+  );
 
+  return (
     <div className="App">
-      <h1 className='text-center'>Employee task app</h1>
-      
-     <div className='wrapper'>
-    
-      <Tasks tasks={tasks} onAddTask={addTask} deleteTask={deleteTask} updateTask={updateTask}/>
-      <Employees
-       employees={employees}
-       onAddEmployee={addEmployee} 
-       deleteEmployee={deleteEmployee}
-       updateEmployee={updateEmployee}
+      <h1 className="text-center">Employee task app</h1>
 
-       />
-
-     </div>
-
+      <div className="wrapper">
+        <Tasks
+          tasks={tasks}
+          onAddTask={addTask}
+          deleteTask={deleteTask}
+          updateTask={updateTask}
+        />
+        <Employees
+          employees={employees}
+          onAddEmployee={addEmployee}
+          deleteEmployee={deleteEmployee}
+          updateEmployee={updateEmployee}
+        />
+      </div>
     </div>
   );
 }

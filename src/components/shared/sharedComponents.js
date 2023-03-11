@@ -1,5 +1,5 @@
-
-{/* <form className='form' onSubmit={submitTask}>
+{
+  /* <form className='form' onSubmit={submitTask}>
 <div className='form-control'>
  <label>Task title</label>
  <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" required />
@@ -22,4 +22,5 @@
 
 
 <button style={{backgroundColor: "black"}} className='btn' type="submit">Create task</button>
-</form> */}
+</form> */
+}
