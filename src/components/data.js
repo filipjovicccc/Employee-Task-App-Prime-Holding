@@ -29,7 +29,7 @@ export const employeeData = [
 export const tasksData = [
   {
     id: 1,
-    title: 'booking',
+    title: 'Booking',
     description: 'Reading files',
     assignee: 'Marie',
     dueDate: '5/3/2023',
@@ -48,5 +48,19 @@ export const tasksData = [
     description: 'Assesment of employes',
     assignee: 'John',
     dueDate: '1/1/2023',
+  },
+  {
+    id: 4,
+    title: 'Job assesment',
+    description: 'Reading files',
+    assignee: 'Susane',
+    dueDate: '1/2/2023',
+  },
+  {
+    id: 5,
+    title: 'Work evaluation',
+    description: 'Assesment of employes',
+    assignee: 'John',
+    dueDate: '3/1/2022',
   },
 ];

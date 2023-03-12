@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import Modal from './UI/Modal';
+import { AiOutlineClose } from 'react-icons/ai';
 
-function NewTask({ onAddTask }) {
+function NewTask(props) {
   const [title, setTitle] = useState('');
 
   const [description, setDescription] = useState('');
@@ -22,7 +23,7 @@ function NewTask({ onAddTask }) {
       dueDate,
     };
 
-    onAddTask(newTask);
+    props.onAddTask(newTask);
 
     setTitle('');
     setDescription('');
@@ -33,6 +34,7 @@ function NewTask({ onAddTask }) {
   return (
     <Modal>
     <form className="form" onSubmit={submitTask}>
+    <AiOutlineClose onClick={props.closeAddButton} />
       <div className="form-control">
         <label>Task title</label>
         <input
@@ -56,13 +58,18 @@ function NewTask({ onAddTask }) {
 
       <div className="form-control">
         <label>Task assignee</label>
-        <input
+        {/* <input
           type="text"
           value={assignee}
           onChange={(e) => setAssignee(e.target.value)}
           placeholder="Assignee"
           required
-        />
+        /> */}
+        {props.nameList.map((name)=> (
+           <option   onChange={(e) => setAssignee(e.target.value)}  key={name} value={name}>
+             {name}
+           </option>
+        ))}
       </div>
       <div className="form-control">
         <label>Task due date</label>
@@ -83,11 +90,6 @@ function NewTask({ onAddTask }) {
         Create task
       </button>
     </form>
-
-
-
-
-
     </Modal>
   );
 }

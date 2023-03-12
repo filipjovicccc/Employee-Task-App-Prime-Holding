@@ -10,6 +10,8 @@ function Task(props) {
   const [assignee, setAssignee] = useState(props.task.assignee);
   const [dueDate, setDueDate] = useState(props.task.dueDate);
 
+  
+
   const handleUpdate = () => {
     const updatedTask = {
       ...props.task,
@@ -23,28 +25,29 @@ function Task(props) {
   };
 
   return (
-    <Card>
-      {editing ? (
+     <Card >
+     {editing ? (
         <>
-          <label>Task title:</label>
+        <form className='update-form'>
+        <label className='custom-color'>Task title:</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label>Description:</label>
+          <label className='custom-color'>Description:</label>
           <input
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <label>Assignee:</label>
+          <label className='custom-color'>Assignee:</label>
           <input
             type="text"
             value={assignee}
             onChange={(e) => setAssignee(e.target.value)}
           />
-          <label>Due date:</label>
+          <label className='custom-color'>Due date:</label>
           <input
             type="text"
             value={dueDate}
@@ -53,25 +56,28 @@ function Task(props) {
           <button className="small-btn" onClick={handleUpdate}>
             Save
           </button>
+        </form>
+         
         </>
       ) : (
         <>
-          <h3>
-            {title}{' '}
-            <AiOutlineClose onClick={() => props.deleteTask(props.task.id)} />
-          </h3>
-          <h3>{description}</h3>
-          <h3>{assignee}</h3>
-          <h3>{dueDate}</h3>
-
-          <div className="actions">
-            <button className="small-btn" onClick={() => setEditing(true)}>
-              Update
-            </button>
-          </div>
+        <div className="header-section">
+        <div className='items-title'>
+          <h3>{title}</h3>
+         <AiOutlineClose onClick={() => props.deleteTask(props.task.id)} />
+         </div>
+         </div>
+         <h3><span className="custom-color">Task description:</span> {description}</h3>
+        <h3><span className="custom-color">Task assignee:</span> {assignee}</h3>
+        <h3><span className="custom-color">Task Due date:</span> {dueDate}</h3>
+      <div className="actions">
+        <button className="small-btn" onClick={() => setEditing(true)}>
+         Update
+     </button>
+  </div>
         </>
-      )}
-    </Card>
+      )} 
+     </Card>
   );
 }
 

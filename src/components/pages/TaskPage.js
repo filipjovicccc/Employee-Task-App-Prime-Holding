@@ -1,15 +1,17 @@
 import React from 'react'
-import InputSection from '../InputSection'
+import InputSectionTasks from '../InputSectionTasks'
 import Tasks from '../Tasks'
 
 function TaskPage(props) {
    
-    console.log(props)
-  return (
+return (
     <div>
-      <InputSection onAddTask={props.onAddTask}/>
+      <InputSectionTasks 
+        employees={props.employees}
+      />
       <Tasks   
           tasks={props.tasks}
+          employees={props.employees}
           deleteTask={props.deleteTask}
           updateTask={props.updateTask}/>
     </div>

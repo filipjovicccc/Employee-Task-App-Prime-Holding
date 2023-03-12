@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import Modal from './UI/Modal';
 
 function NewEmployee({ onAddEmployee }) {
   const [name, setName] = useState('');
@@ -33,7 +34,7 @@ function NewEmployee({ onAddEmployee }) {
   };
 
   return (
-    <form className="form" onSubmit={submitTask}>
+    <Modal className="form" onSubmit={submitTask}>
       <div className="form-control">
         <label>Employee Name</label>
         <input
@@ -93,7 +94,7 @@ function NewEmployee({ onAddEmployee }) {
       >
         Create task
       </button>
-    </form>
+    </Modal>
   );
 }
 

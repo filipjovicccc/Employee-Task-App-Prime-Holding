@@ -8,7 +8,6 @@ import {
   updateStorage,
   setStorage,
 } from './service/storageService';
-import InputSection from './components/InputSection';
 import Header from './components/UI/Header';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TaskPage from './components/pages/TaskPage';
@@ -93,46 +92,32 @@ function App() {
   );
 
   return (
-    <div className="App">
+    <div >
     
      <Router>
-   
-    <Header />
-    
-    
+   <Header />
+
      <Routes>
       <Route path="/" element={
       <TaskPage 
           tasks={tasks}
+          employees={employees}
           onAddTask={addTask}
           deleteTask={deleteTask}
           updateTask={updateTask}/>}/>
       
-      <Route path="/employee" element={<EmployeePage />}/>
+      <Route path="/employee" element={
+      <EmployeePage 
+        employees={employees}
+        onAddEmployee={addEmployee}
+        deleteEmployee={deleteEmployee}
+        updateEmployee={updateEmployee}
+     />}/>
    
      </Routes>
+   </Router>
 
-
-     </Router>
-
-      {/* <InputSection />
-      <Header />
-      <Taskss />
-
-      <div className="wrapper">
-        <Tasks
-          tasks={tasks}
-          onAddTask={addTask}
-          deleteTask={deleteTask}
-          updateTask={updateTask}
-        />
-        <Employees
-          employees={employees}
-          onAddEmployee={addEmployee}
-          deleteEmployee={deleteEmployee}
-          updateEmployee={updateEmployee}
-        />
-      </div> */}
+    
     </div>
   );
 }

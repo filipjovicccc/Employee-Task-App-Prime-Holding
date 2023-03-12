@@ -1,9 +1,18 @@
 import React from 'react'
+import InputSectionEmployee from '../InputSectionEmployee'
+import Employees from '../Employees'
 
-function EmployeePage() {
+function EmployeePage(props) {
   return (
     <div>
-      <h1>Hello from employee page</h1>
+      <InputSectionEmployee onAddEmployee={props.onAddEmployee}/>
+
+      <Employees 
+          employees={props.employees}
+          deleteEmployee={props.deleteEmployee}
+          updateEmployee={props.updateEmployee}
+      />
+    
     </div>
   )
 }
