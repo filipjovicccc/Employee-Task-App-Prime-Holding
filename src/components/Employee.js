@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
-import Card from './UI/Card';
+
 
 function Employee(props) {
   const [editingEmployee, setEditingEmployee] = useState(false);
@@ -25,11 +25,11 @@ function Employee(props) {
   };
 
   return (
-    <Card>
+    <div  className={`card ${props.employee.reminder ? 'reminder' : ''}`} onDoubleClick={() => props.toggleReminderEmployee(props.employee.id)} >
       {editingEmployee ? (
         <>
         <form className='update-form'>
-        <label className='custom-color'>Employee Name: </label>
+        <label className='custom-color'>Employee Name </label>
          <input
             type="text"
             value={name}
@@ -80,7 +80,7 @@ function Employee(props) {
          <h3><span className="custom-color">Employee email:</span> {email}</h3>
         <h3><span className="custom-color">Employee phone number:</span> {phoneNumber}</h3>
         <h3><span className="custom-color">Employee birth date:</span> {birthDate}</h3>
-        <h3><span className="custom-color">Employee salary:</span> {salary}</h3>
+        <h3><span className="custom-color">Employee salary:</span> {salary}$</h3>
       <div className="actions">
         <button className="small-btn" onClick={() => setEditingEmployee(true)}>
          Update
@@ -88,7 +88,7 @@ function Employee(props) {
   </div>
         </>
       )}
-    </Card>
+    </div>
   );
 }
 

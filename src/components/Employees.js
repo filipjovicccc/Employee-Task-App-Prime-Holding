@@ -2,7 +2,7 @@ import React from 'react';
 import Employee from './Employee';
 
 function Employees(props) {
-  
+
 return (
    
      <div className='container-items'>
@@ -12,6 +12,7 @@ return (
             employee={employee}
             deleteEmployee={props.deleteEmployee}
             updateEmployee={props.updateEmployee}
+            toggleReminderEmployee={props.toggleReminderEmployee}
             className="Item"
           />
         ))}

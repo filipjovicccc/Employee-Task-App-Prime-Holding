@@ -77,19 +77,36 @@ function App() {
       const tasksCompleted = tasks.filter(
         (task) => task.assignee === employee.name
       ).length;
-      return { employeeName: employee.name, tasksCompleted };
+      return { employeeName: employee.name, tasksCompleted, employeeId: employee.id};
     });
 
     employeeTaskCounts.sort((a, b) => b.tasksCompleted - a.tasksCompleted);
 
     return employeeTaskCounts.slice(0, 5);
   };
-  const topEmployees = getTopEmployees();
-  topEmployees.forEach((employee) =>
-    console.log(
-      `${employee.employeeName}: ${employee.tasksCompleted} tasks completed`
-    )
-  );
+ 
+
+  function getNamesOfYoungerThan30() {
+    const names = [];
+  
+    employees.forEach((person) => {
+      const birthYear = parseInt(person.birthDate.split('/')[2]);
+      const currentYear = new Date().getFullYear();
+      const age = currentYear - birthYear;
+      if (age < 30) {
+        names.push(person.name);
+      }
+    });
+  
+    return names;
+  }
+
+  const toggleReminderTasks = (id) => {
+   setTasks(tasks.map((task) => task.id === id ? {...task, reminder: !task.reminder} : task))
+  }
+  const toggleReminderEmployee = (id) => {
+    setEmployee(employees.map((employee) => employee.id === id ? {...employee, reminder: !employee.reminder} : employee))
+   }
 
   return (
     <div >
@@ -104,7 +121,14 @@ function App() {
           employees={employees}
           onAddTask={addTask}
           deleteTask={deleteTask}
-          updateTask={updateTask}/>}/>
+          updateTask={updateTask}
+          toggleReminderTasks={toggleReminderTasks}
+          getTopEmployees = {getTopEmployees}
+          getNamesOfYoungerThan30={getNamesOfYoungerThan30}
+
+          />
+          
+          }/>
       
       <Route path="/employee" element={
       <EmployeePage 
@@ -112,7 +136,10 @@ function App() {
         onAddEmployee={addEmployee}
         deleteEmployee={deleteEmployee}
         updateEmployee={updateEmployee}
-     />}/>
+        toggleReminderEmployee={toggleReminderEmployee}
+        getTopEmployees = {getTopEmployees}
+        getNamesOfYoungerThan30={getNamesOfYoungerThan30}
+             />}/>
    
      </Routes>
    </Router>

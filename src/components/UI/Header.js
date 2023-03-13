@@ -7,9 +7,8 @@ function Header() {
       <nav className='navbar'>
         <ul className='navbar-list'>
            <Link className='links' to={"/"}> <li>Tasks tracker</li></Link>
-           <Link className='links' to={"/employee"}> <li>Employe tracker</li> </Link>
+           <Link className='links' to={"/employee"}> <li>Employee tracker</li> </Link>
             
-           
         </ul>
       </nav>
     </div>

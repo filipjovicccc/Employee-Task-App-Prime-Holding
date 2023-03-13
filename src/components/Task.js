@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
-import Card from './UI/Card';
+
 
 function Task(props) {
   const [editing, setEditing] = useState(false);
@@ -10,9 +10,7 @@ function Task(props) {
   const [assignee, setAssignee] = useState(props.task.assignee);
   const [dueDate, setDueDate] = useState(props.task.dueDate);
 
-  
-
-  const handleUpdate = () => {
+ const handleUpdate = () => {
     const updatedTask = {
       ...props.task,
       title,
@@ -25,7 +23,7 @@ function Task(props) {
   };
 
   return (
-     <Card >
+     <div className={`card ${props.task.reminder ? 'reminder' : ''}`} onDoubleClick={() => props.toggleReminderTasks(props.task.id)} >
      {editing ? (
         <>
         <form className='update-form'>
@@ -77,7 +75,7 @@ function Task(props) {
   </div>
         </>
       )} 
-     </Card>
+     </div>
   );
 }
 
