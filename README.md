@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+A setup guide: 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Employee Task Tracker application has been built using React.
+ To start the application, you can use the command "npm run start" in the command line.
+ This application is designed to help users track tasks assigned to employees,
+ with two CRUD (Create, Read, Update, Delete) functionalities.
+ Only registered employees can log in and access their assigned tasks.
 
-## Available Scripts
+The CRUD functionalities have been implemented using localStorage, 
+as advised in the assignment. Most of the functionality has been implemented in the App.js component, with the help of the StorageService component, which was created to keep the code cleaner.
 
-In the project directory, you can run:
+To avoid errors, the code for the tasks and employee sections have been separated,
+ with each section having four components. There are also additional components such as the header, which was created independently, and the Modal component, which is activated when users want to add new tasks or employees.
 
-### `npm start`
+Routing has been implemented in the project, with two main pages - the EmployeePage 
+and the TaskPage - where all other components are located. This helps to make the pages look cleaner and more organized.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To share data between components, most of the logic has been implemented using props. 
+Forms have also been created to add and update data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The application's styling has been done in the index.css file. Additionally, 
+there is a Statistic component that displays two different types of statistics that are generated from the application's functionalities.
 
-### `npm test`
+One of the application's additional functionalities is the reminder feature.
+ When users double-click on a task or employee card, the card changes to blue, 
+indicating that the reminder has been set for that task.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Statistic component displays statistics for the top five employees and for
+ employees under 30 years of age. The application also contains dummy initial data 
+for employees and tasks, with the ability to add more data as needed.
 
-### `npm run build`
+In the Employee Task Tracker application, the Tasks and Employees components are responsible 
+for looping through the main data lists.
+ On the Tasks side, the main Task card is presented, while on the Employee side, 
+the main Employee card is displayed.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To add new employees and tasks, separate InputSections have been implemented for both types of data. 
+Validation has been performed using regular expressions to ensure that the data inputted is valid.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Overall, the application provides a clean and organized way to track employee tasks 
+using a simple CRUD functionality. The addition of the reminder feature and the 
+Statistic component adds extra value to the application, making it a helpful tool for
+ managing employee tasks and monitoring productivity.
